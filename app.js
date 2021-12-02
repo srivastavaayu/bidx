@@ -17,6 +17,7 @@ const PORT = process.env.PORT;
 //API's
 app.use(require('./api/userCreation'));
 app.use(require('./api/login'));
+app.use(require('./api/addProduct'));
 
 
 
