@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 var multer = require('multer')
 const Product = require('../model/productSchema');
+const Authenticate = require('../middlewares/authentication');
+var dateTime = require('node-datetime');
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -15,22 +17,47 @@ var upload = multer({ storage: storage });
 
 
 // add a product api's
-router.post('/addProduct', upload.array('product-images', 12),product);
+router.post('/addProduct', upload.array('product-images', 12),Authenticate,product);
 
 async function product(req,res,next){
   try {
 
-    const { description, duration, basePrice } = req.body;
+    //console.log(req.rootUser);
+
+    var { description, duration, basePrice } = req.body;
     var fileLocation = [];
     for (var i = 0; i < req.files.length; i++) {
-      console.log(req.files[i]);
+      //console.log(req.files[i]);
       fileLocation.push(req.files[i].path);
     }
 
+    duration = parseInt(duration);
+
+    console.log(duration);
+    var dt = dateTime.create();
+    console.log(dt);
+    dt.offsetInDays(duration);
+    var formatted = dt.format('Y-m-d H:M:S');
+
+    console.log(formatted);
+
+
+
+ 
+    // var currentDate = new Date();
+
+    // console.log(duration);
+
+    // currentDate.setDate(currentDate.getDate()+duration);
+
+    // console.log(currentDate.getDate());
+
     const product = Product({
+      'creatorId':req.rootUser._id,
+      'creatorName':req.rootUser.firstName +' ' +req.rootUser.lastName,
       'basePrice':basePrice,
       'biddingPrice':basePrice,
-      'duration':duration,
+      'duration':formatted,
       'description':description,
       'images':fileLocation
     })

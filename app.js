@@ -18,6 +18,10 @@ const PORT = process.env.PORT;
 app.use(require('./api/userCreation'));
 app.use(require('./api/login'));
 app.use(require('./api/addProduct'));
+app.use(require('./api/addBid'));
+app.use(require('./api/viewRecievedBids'));
+app.use(require('./api/viewBid'));
+app.use(require('./api/viewProduct'));
 
 
 

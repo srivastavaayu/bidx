@@ -5,6 +5,7 @@ const productSchema = mongoose.Schema({
     creatorId:{
         type:String
     },
+    creatorName:String,
     date:{
         type:Date,
         default:Date.now()
