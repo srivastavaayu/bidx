@@ -25,10 +25,10 @@ router.post('/loginUser', async (req, res) => {
 
                 return res.status(202).json({ message: userExit });
             } else {
-                return res.status(402).json({ message: "Invalid Credantials" });
+                return res.status(404).json({ message: "Invalid Credantials" });
             }
         } else {
-            return res.status(402).json({ message: "UserName does not exist" });
+            return res.status(404).json({ message: "UserName does not exist" });
         }
 
 

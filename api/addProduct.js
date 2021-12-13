@@ -24,7 +24,7 @@ async function product(req,res,next){
 
     //console.log(req.rootUser);
 
-    var { description, duration, basePrice } = req.body;
+    var { description, duration, basePrice, category } = req.body;
     var fileLocation = [];
     for (var i = 0; i < req.files.length; i++) {
       //console.log(req.files[i]);
@@ -59,7 +59,8 @@ async function product(req,res,next){
       'biddingPrice':basePrice,
       'duration':formatted,
       'description':description,
-      'images':fileLocation
+      'images':fileLocation,
+      'category':category
     })
 
     await product.save();

@@ -30,7 +30,8 @@ const productSchema = mongoose.Schema({
     },
     bids:{
         type:Array
-    }   
+    },
+    category:String   
 
 });
 

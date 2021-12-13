@@ -22,7 +22,11 @@ app.use(require('./api/addBid'));
 app.use(require('./api/viewRecievedBids'));
 app.use(require('./api/viewBid'));
 app.use(require('./api/viewProduct'));
+app.use(require('./api/editProfile'));
+app.use(require('./api/editPassword'));
+app.use(require('./api/categoryCount'));
 
+app.use(require('./api/otpRequest'));
 
 
 

@@ -30,6 +30,7 @@ const userSchema = mongoose.Schema({
         required:'true',
         default: 'none'
     },
+    otp:Number,
     tokens:[
         {
             token:{
