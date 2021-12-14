@@ -51,7 +51,7 @@ class Header extends React.Component {
                     aria-labelledby="navbarDropdownMenu"
                   >
                     <li>
-                      <a className="dropdown-item" href="#">
+                      <a className="dropdown-item" to="#">
                         Action
                       </a>
                     </li>
