@@ -32,6 +32,10 @@ const productSchema = mongoose.Schema({
         type:Array
     },
     category:String,
+    sendNotification:{
+        type:Boolean,
+        default:false
+    },
     prodName:String   
 
 });

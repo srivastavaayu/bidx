@@ -5,7 +5,7 @@
 /.pnp
 .pnp.js
 /uploads
-/api/otpRequest.js
+
 
 # testing
 /coverage

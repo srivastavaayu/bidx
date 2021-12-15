@@ -3,7 +3,7 @@ const app = express();
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 var cookieParser = require('cookie-parser')
-
+const sendNotification = require('./api/notification');
 dotenv.config({path : './config.env'});
 
 require("./db/conn");
@@ -29,12 +29,22 @@ app.use(require('./api/viewParticularProduct'));
 app.use(require('./api/viewUserProfile'));
 app.use(require('./api/soldItems'));
 
+
 app.use(require('./api/otpRequest'));
 
 
 
 app.get("",(req,res)=>{
     res.send("hello user");
+});
+
+
+
+var cron = require('node-cron');
+
+cron.schedule('*/2 * * * *', () => {
+  console.log('Sending Notification');
+  sendNotification();
 });
 
 app.listen(PORT,()=>{
