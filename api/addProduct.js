@@ -24,8 +24,11 @@ async function product(req,res,next){
 
     //console.log(req.rootUser);
 
-    var { description, duration, basePrice, category } = req.body;
+    const date = new Date();
+
+    var { description, duration, basePrice, category,prodName } = req.body;
     var fileLocation = [];
+    
     for (var i = 0; i < req.files.length; i++) {
       //console.log(req.files[i]);
       fileLocation.push(req.files[i].path);
@@ -39,10 +42,10 @@ async function product(req,res,next){
     dt.offsetInDays(duration);
     var formatted = dt.format('Y-m-d H:M:S');
 
-    console.log(formatted);
+    //console.log(formatted);
+    date.setDate(date.getDate() +duration);
 
-
-
+    console.log(date);
  
     // var currentDate = new Date();
 
@@ -60,7 +63,8 @@ async function product(req,res,next){
       'duration':formatted,
       'description':description,
       'images':fileLocation,
-      'category':category
+      'category':category,
+      'prodName':prodName
     })
 
     await product.save();

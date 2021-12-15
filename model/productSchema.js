@@ -31,7 +31,8 @@ const productSchema = mongoose.Schema({
     bids:{
         type:Array
     },
-    category:String   
+    category:String,
+    prodName:String   
 
 });
 

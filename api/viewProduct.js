@@ -12,12 +12,26 @@ router.get('/viewProduct',async (req,res)=>{
 
         const date = new Date();
         // const date  = ISODate();
-        console.log(date);
+        //console.log(date);
+        var finalResult=[];
         const result = await Product.find({duration:{$gt:date}});
-        console.log(result);
+
+        for(var i = 0; i < result.length; i++) {
+            var obj = result[i];
+        
+            const d1 = new Date();
+            const d2 = new Date(obj.duration);
+            const hoursleft = Math.ceil((d2.getTime()-d1.getTime())/(1000 * 3600));
+            var result1 = JSON.parse(JSON.stringify(obj));
+            //result1.addProperty('hoursleft',hoursleft);
+            result1.hoursleft = hoursleft;
+            finalResult.push(result1);
+        }
+
+        console.log(finalResult);
 
         if(result){
-            return res.status(202).json(result);
+            return res.status(202).json(finalResult);
         }else{
             return res.status(404).json({message:"Bad Request :)"});
         }

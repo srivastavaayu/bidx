@@ -14,12 +14,28 @@ router.get('/viewParticularProduct',async (req,res)=>{
 
         const date = new Date();
         // const date  = ISODate();
-        console.log(date);
-        const result = await Product.findOne({'_id':productId});
-        console.log(result);
+        //console.log(date);
+        var result = await Product.findOne({'_id':productId});
+        //console.log(result);
 
+        // const expiryDate = dateTime.create(result.duration);
+        // const expiryFormatted = expiryDate.format('Y-m-d H:M:S');
+        // console.log(expiryFormatted);
+        // console.log(formatted);
+        // var dates = expiryDate.getDatesInRange(dt);
+        // console.log(dates);
+
+        const d1 = new Date();
+        const d2 = new Date(result.duration);
+        const hoursleft = Math.ceil((d2.getTime()-d1.getTime())/(1000 * 3600));
+        console.log(hoursleft);
+        var result1 = JSON.parse(JSON.stringify(result));
+        //result1.addProperty('hoursleft',hoursleft);
+        result1.hoursleft = hoursleft;
+        console.log(result1);
+        
         if(result){
-            return res.status(202).json(result);
+            return res.status(202).json(result1);
         }else{
             return res.status(404).json({message:"Bad Request :)"});
         }
