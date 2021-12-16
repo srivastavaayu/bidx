@@ -11,6 +11,7 @@ import img2 from "../static/image2.jpg";
 
 // sample API
 
+
 const data = [{image:img1,title:"Vehicles",},
               {image:img2,title:"Electronics",}
             ]
