@@ -1,20 +1,26 @@
 @import "./Authentication.scss";
+@import "./Navbar.scss";
+@import "./Items.scss";
+@import "./Homepage.scss";
+@import "./Footer.scss";
+@import "./Product.scss";
 
 .App {
   min-height: 100vh;
   // background-color: #e6e6e6;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=KoHo&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3&display=swap");
 body {
   margin: 0;
-  font-family: 'KoHo', sans-serif;
+  font-family: "Source Sans 3", sans-serif;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
