@@ -7,6 +7,8 @@ import Authentication from "./components/Authentication";
 import Homepage from "./components/Homepage";
 import Items from "./components/Items";
 import Footer from "./components/Footer";
+import ProdInfo from "./components/ProdInfo";
+import Dashboard from "./components/Dashboard";
 import Navbar from "./components/Navbar";
 import {Route,Switch} from 'react-router-dom';
 
@@ -15,7 +17,7 @@ function App() {
     <div className="App">
       <Navbar/>
       <Switch>
-          <Route exact path="/home" component={Items} />
+          <Route exact path="/home" component={ProdInfo} />
           <Route exact path="/UserLogin" component={Authentication} />
       </Switch>
       {/* <Header /> */}

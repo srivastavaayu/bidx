@@ -17,7 +17,9 @@ class Authentication extends React.Component {
     super(props);
     this.state = {
       authenticationMode: "login",
+      username:"",
       email: "",
+      phone:"",
       password: "",
       firstName: "",
       lastName: "",
@@ -36,9 +38,71 @@ class Authentication extends React.Component {
     document.getElementById(event.target.id).classList.remove("is-invalid");
   }
 
+ //register function (backend)
+ async registerUser() {
+  try {
+    const res = await fetch("/registerUser", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        'userName':this.state.username,
+        'firstName':this.state.firstName,
+        'lastName':this.state.lastName,
+        'email':this.state.email,
+        'password':this.state.password,
+        'phone':this.state.phone
+      }),
+    });
+
+    const data = await res.json();
+
+    if (res.status === 202) {
+      console.log(data.message);
+      window.alert(data.message);
+    } else {
+      console.log(data.message);
+      window.alert(data.message);
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+
+async loginUser() {
+  try {
+    const res = await fetch("/loginUser", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        'userName':this.state.username,
+        'password':this.state.password,
+      }),
+    });
+
+    const data = await res.json();
+    console.log(data);
+    //TODO: Redirect to Home Page
+    if (res.status === 202) {
+      console.log(data.message.userName);
+      window.alert(data.message.userName);
+    } else {
+      console.log(data.message);
+      window.alert(data.message);
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
   validateandAuthenticate(event) {
     event.preventDefault();
     if (this.state.authenticationMode === "login") {
+      this.loginUser();
     } else if (this.state.authenticationMode === "register") {
       if (this.state.firstName.length === 0) {
         document
@@ -81,6 +145,7 @@ class Authentication extends React.Component {
           "authenticationRegisterDiv__confirmPasswordInput__invalidFeedback"
         ).innerText = "Please re-enter the same password entered above!";
       }
+      this.registerUser();
     }
   }
 
@@ -104,6 +169,9 @@ class Authentication extends React.Component {
     }
   }
 
+
+  //Back End Connect
+
   render() {
     if (this.state.authenticationMode === "login") {
       return (
@@ -114,10 +182,10 @@ class Authentication extends React.Component {
               <input
                 id="authenticationLoginDiv__emailInput"
                 className="form-control"
-                name="email"
-                value={this.state.email}
+                name="username"
+                value={this.state.username}
                 type="text"
-                placeholder="E-mail Address"
+                placeholder="Username"
                 onChange={(event) => this.handleInput(event)}
               />
               <div
@@ -125,7 +193,7 @@ class Authentication extends React.Component {
                 className="invalid-feedback"
               ></div>
               <label htmlFor="authenticationLoginDiv__emailInput">
-                E-mail Address
+                Username
               </label>
             </div>
             <div className="form-floating mb-3">
@@ -222,6 +290,42 @@ class Authentication extends React.Component {
               ></div>
               <label htmlFor="authenticationRegisterDiv__emailInput">
                 E-mail Address
+              </label>
+            </div>
+            <div className="form-floating mb-3">
+              <input
+                id="authenticationRegisterDiv__phoneInput"
+                className="form-control"
+                name="phone"
+                value={this.state.phone}
+                type="tel"
+                placeholder="Phone Number"
+                onChange={(event) => this.handleInput(event)}
+              />
+              <div
+                id="authenticationRegisterDiv__phoneInput__invalidFeedback"
+                className="invalid-feedback"
+              ></div>
+              <label htmlFor="authenticationRegisterDiv__phoneInput">
+                Phone Number
+              </label>
+            </div>
+            <div className="form-floating mb-3">
+              <input
+                id="authenticationRegisterDiv__usernameInput"
+                className="form-control"
+                name="username"
+                value={this.state.username}
+                type="text"
+                placeholder="Username"
+                onChange={(event) => this.handleInput(event)}
+              />
+              <div
+                id="authenticationRegisterDiv__usernameInput__invalidFeedback"
+                className="invalid-feedback"
+              ></div>
+              <label htmlFor="authenticationRegisterDiv__usernameInput">
+                Username
               </label>
             </div>
             <div className="form-floating mb-3">
