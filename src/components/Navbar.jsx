@@ -8,6 +8,46 @@ const Navbar = () => {
   const [productDuration, setProductDuration] = useState("");
   const [productCategory, setProductCategory] = useState("1");
   const [productPhoto, setProductPhoto] = useState("");
+
+  //connecting backend
+  async function addProduct() {
+    // addProductFormdata.append("prodName", productName);
+    // addProductFormdata.append("prodName", productName);
+    // addProductFormdata.append("prodName", productName);
+    // addProductFormdata.append("prodName", productName);
+    // addProductFormdata.append("prodName", productName);
+    // addProductFormdata.append("prodName", productName);
+    try {
+      const res = await fetch("/addProduct", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify({
+          prodName: productName,
+          description: productDescription,
+          basePrice: productBaseBidPrice,
+          duration: productDuration,
+          category: productCategory,
+          "product-images": document.getElementById(productPhoto).files[0],
+        }),
+      });
+
+      const data = await res.json();
+
+      if (res.status === 202) {
+        console.log(data.message);
+        window.alert(data.message);
+      } else {
+        console.log(data.message);
+        window.alert(data.message);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   return (
     <>
       <div
@@ -31,11 +71,17 @@ const Navbar = () => {
               ></button>
             </div>
             <div class="modal-body">
+              <form
+                id="addProductForm"
+                method="POST"
+                action="/addProduct"
+              ></form>
               <div class="form-floating mb-3">
                 <input
                   type="text"
                   class="form-control"
                   id="productNameInput"
+                  name="prodName"
                   placeholder="Product Name"
                   value={productName}
                   onChange={(event) => {
@@ -49,6 +95,7 @@ const Navbar = () => {
                   type="text"
                   class="form-control"
                   id="productDescriptionInput"
+                  name="description"
                   placeholder="Product Description"
                   style={{ height: "100px" }}
                   value={productDescription}
@@ -63,6 +110,7 @@ const Navbar = () => {
                   type="text"
                   class="form-control"
                   id="productBaseBidPriceInput"
+                  name="basePrice"
                   placeholder="Base Bid Price"
                   value={productBaseBidPrice}
                   onChange={(event) => {
@@ -76,8 +124,9 @@ const Navbar = () => {
                   type="text"
                   class="form-control"
                   id="productDurationInput"
+                  name="duration"
                   placeholder="Product Bidding Duration (in days)"
-                  value={productBaseBidPrice}
+                  value={productDuration}
                   onChange={(event) => {
                     setProductDuration(event.target.value);
                   }}
@@ -90,6 +139,7 @@ const Navbar = () => {
                 <select
                   class="form-select"
                   id="productCategory"
+                  name="category"
                   value={productCategory}
                   onChange={(event) => {
                     setProductCategory(event.target.value);
@@ -112,10 +162,7 @@ const Navbar = () => {
                   class="form-control"
                   type="file"
                   id="productPhoto"
-                  value={productPhoto}
-                  onChange={(event) => {
-                    setProductPhoto(event.target.value);
-                  }}
+                  name="product-images"
                 />
               </div>
             </div>
@@ -127,7 +174,13 @@ const Navbar = () => {
               >
                 Close
               </button>
-              <button type="button" class="btn btn-primary">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                onClick={() => {
+                  addProduct();
+                }}
+              >
                 Add Product
               </button>
             </div>
@@ -175,7 +228,7 @@ const Navbar = () => {
                 exact
                 activeClassName="menu_active"
                 className="nav-link mx-1"
-                to="/auth"
+                to="/userLogin"
               >
                 Login
               </NavLink>
