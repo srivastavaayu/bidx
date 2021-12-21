@@ -77,7 +77,7 @@ const Homepage=()=>{
                                     <img src={val.image} className="card-img-top mx-auto" alt="Card1" style={{width:"70%"}}/>
                                     </div>
                                     <div className="card-body text-center">
-                                        <button type="button" class="btn btn-outline-danger">{val.title}</button>
+                                        <button type="button" class="btn btn-outline-danger" onClick={()=>{}}>{val.title}</button>
                                     </div>
                                 </div>
                                 )

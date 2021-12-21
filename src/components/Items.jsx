@@ -6,15 +6,6 @@ import {Link} from "react-router-dom";
 
 // Component to show items
 const Items=()=>{
-//     const sdata = [{image:img,prod_name:"Headphone",prod_info:"Very sexy headphone must buy!!!",min_bid:200,curr_max_bid:340},
-//                     {image:img2,prod_name:"Lenovo Ideapad 530s",prod_info:"Very sexy laptop must buy!!! buy it",min_bid:10000,curr_max_bid:10340},
-//                     {image:img,prod_name:"Redmi note 6 pro",prod_info:"Very sexy phone must buy!!!",min_bid:3000,curr_max_bid:2400},
-//                     {image:img,prod_name:"Kuch bhi",prod_info:"Very sexy kuch bhi must buy!!!",min_bid:0,curr_max_bid:40},
-//                     {image:img,prod_name:"Headphone",prod_info:"Very sexy headphone must buy!!!",min_bid:200,curr_max_bid:340},
-//                     {image:img,prod_name:"Lenovo Ideapad 530s",prod_info:"Very sexy laptop must buy!!! buy it",min_bid:10000,curr_max_bid:10340},
-//                     {image:img2,prod_name:"Redmi note 6 pro",prod_info:"Very sexy phone must buy!!!",min_bid:3000,curr_max_bid:2400},
-//                     {image:img,prod_name:"Kuch bhi",prod_info:"Very sexy kuch bhi must buy!!!",min_bid:0,curr_max_bid:40}];
-
     const [sdata,setSdata] = useState();
     //Backend Connection
     useEffect(()=>{
@@ -31,10 +22,8 @@ const Items=()=>{
           
                 const data = await res.json();
                 setSdata(data);
-                // console.log(data);
-                //setUserData(data);
           
-                if (!res.status === 200) {
+                if (!res.status === 202) {
                   const error = new Error(res.error);
                   throw error;
                 }
@@ -60,7 +49,13 @@ const Items=()=>{
                             <div class="card card_item card_shadow col-lg-3 my-4">
                                  <img src={img} class="card-img-top" alt="..."/>
                                     <div class="card-body card_background">
-                                        <h5 class="card-title">{val.prodName}</h5>
+                                        <div className="d-flex">
+                                            <h5 class="card-title">{val.prodName}</h5>
+                                        {/* Timer */}
+                                            <div className="ms-5 ps-5">
+                                                <p>Hii</p>
+                                            </div>
+                                        </div>
                                         <p class="card-text">{val.description}</p>
                                         <div className="d-flex">
                                             <Link to={`/product/${val._id}`}><button href="#" class="btn btn-outline-danger">Place Bid</button></Link>

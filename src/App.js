@@ -18,8 +18,10 @@ function App() {
     <div className="App">
       <Navbar/>
       <Switch>
-          <Route exact path="/home" component={Forgotpass} />
+          <Route exact path="/home" component={Authentication} />
           <Route exact path="/UserLogin" component={Authentication} />
+          <Route exact path="/forgotPass" component={Forgotpass} />
+          <Route exact path="/dashboard" component={Dashboard} />
       </Switch>
       {/* <Header /> */}
       {/* <Authentication /> */}
