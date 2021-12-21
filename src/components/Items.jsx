@@ -51,11 +51,14 @@ const Items = () => {
             ? sdata.map((val, index) => {
                 console.log(val);
                 return (
-                  <div class="card card_item card_shadow col-lg-3 my-4">
-                    <img src={val.images} class="card-img-top" alt="..." />
-                    <div class="card-body card_background">
-                      <h5 class="card-title">{val.prodName}</h5>
-                      <p class="card-text">{val.description}</p>
+                  <div className="card card_item card_shadow col-lg-3 my-4">
+                    <img
+                      src={val.images}
+                      className="card-img-top productCardImage"
+                    />
+                    <div className="card-body card_background">
+                      <h5 className="card-title">{val.prodName}</h5>
+                      <p className="card-text">{val.description}</p>
                       <div className="d-flex">
                         <Link to={`/product/${val._id}`}>
                           <button href="#" class="btn btn-outline-danger">

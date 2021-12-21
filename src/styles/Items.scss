@@ -1,6 +1,5 @@
-.card_item{
-    border:none !important;
-
+.card_item {
+  border: none !important;
 }
 // .card_shadow:hover{
 //     -webkit-box-shadow: 18px 20px 29px -5px rgba(97,89,97,0.71);
@@ -9,6 +8,12 @@
 
 // }
 
-.card_background{
-    background-color: rgb(248, 225, 225);
+.card_background {
+  background-color: rgb(248, 225, 225);
+}
+
+.productCardImage {
+  height: 25vw;
+  width: 100%;
+  object-fit: contain;
 }
