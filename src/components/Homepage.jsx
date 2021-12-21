@@ -115,12 +115,28 @@ const Homepage = () => {
                         style={{ width: "70%" }}
                       />
                     </div>
-                    <div className="card-body text-center">
-                      <Link to={val.link}>
+            {/* categories */}
+                <div className="row my-5">
+                    <div className="col-lg-10 col-12 mx-auto">
+                        <h2 className="text-center" style={{color:"red",fontSize:"40px"}}>CATEGORIES</h2>
+                        <div className="d-flex my-5">
+                            { data.map((val,index)=>{
+                                return(
+                                <div className="col-lg-5 col-6 mx-lg-auto mx-0 my-lg-3 my-1" key={index}>
+                                    <div className="card card_item py-1 mx-lg-2 mx-0">
+                                    <img src={val.image} className="card-img-top mx-auto" alt="Card1" style={{width:"70%"}}/>
+                                    </div>
+                                    <div className="card-body text-center">
+                                        <Link to={val.link}>
                         <button type="button" class="btn btn-outline-danger">
                           {val.title}
                         </button>
                       </Link>
+                                    </div>
+                                </div>
+                                )
+                            })} 
+                        </div>
                     </div>
                   </div>
                 );

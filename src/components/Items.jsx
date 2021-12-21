@@ -5,38 +5,41 @@ import img2 from "../static/image3.jpg";
 import { Link, useLocation } from "react-router-dom";
 
 // Component to show items
-const Items = () => {
-  //     const sdata = [{image:img,prod_name:"Headphone",prod_info:"Very sexy headphone must buy!!!",min_bid:200,curr_max_bid:340},
-  //                     {image:img2,prod_name:"Lenovo Ideapad 530s",prod_info:"Very sexy laptop must buy!!! buy it",min_bid:10000,curr_max_bid:10340},
-  //                     {image:img,prod_name:"Redmi note 6 pro",prod_info:"Very sexy phone must buy!!!",min_bid:3000,curr_max_bid:2400},
-  //                     {image:img,prod_name:"Kuch bhi",prod_info:"Very sexy kuch bhi must buy!!!",min_bid:0,curr_max_bid:40},
-  //                     {image:img,prod_name:"Headphone",prod_info:"Very sexy headphone must buy!!!",min_bid:200,curr_max_bid:340},
-  //                     {image:img,prod_name:"Lenovo Ideapad 530s",prod_info:"Very sexy laptop must buy!!! buy it",min_bid:10000,curr_max_bid:10340},
-  //                     {image:img2,prod_name:"Redmi note 6 pro",prod_info:"Very sexy phone must buy!!!",min_bid:3000,curr_max_bid:2400},
-  //                     {image:img,prod_name:"Kuch bhi",prod_info:"Very sexy kuch bhi must buy!!!",min_bid:0,curr_max_bid:40}];
+const Items=()=>{
+    const [sdata,setSdata] = useState();
+    const location = useLocation();
+    const selectedCategory = location.pathname.split("/").at(-1);
+    //Backend Connection
+    useEffect(()=>{
+        async function fetchData(){
+            try {
+                const res = await fetch("/viewProduct", {
+                  method: "GET",
+                  headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                  },
+                  credentials: "include",
+                });
+          
+                const data = await res.json();
+                setSdata(data);
+          
+                if (!res.status === 202) {
+                  const error = new Error(res.error);
+                  throw error;
+                }
+              } catch (err) {
+                console.log(err);
+              }
+        }
 
-  const [sdata, setSdata] = useState();
-  const location = useLocation();
-  const selectedCategory = location.pathname.split("/").at(-1);
-  //Backend Connection
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const res = await fetch("/viewProduct", {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-        });
 
         const data = await res.json();
         setSdata(data.filter((node) => node.category === selectedCategory));
         // console.log(data);
         //setUserData(data);
-
-        if (!res.status === 200) {
+              if (!res.status === 200) {
           const error = new Error(res.error);
           throw error;
         }
