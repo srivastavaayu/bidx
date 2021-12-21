@@ -25,11 +25,6 @@ function App() {
         <Route exact path="/user" component={Dashboard} />
         <Route path="/product" component={ProdInfo} />
       </Switch>
-      {/* <Header /> */}
-      {/* <Authentication /> */}
-      {/* <Homepage/> */}
-      {/* <Items/> */}
-      {/* <Footer/> */}
     </div>
   );
 }

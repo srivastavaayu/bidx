@@ -89,7 +89,7 @@ class Authentication extends React.Component {
       if (res.status === 202) {
         console.log(data.message.userName);
         window.alert(data.message.userName);
-        //history.push("/home");
+        this.props.history.push("/home");
       } else {
         console.log(data.message);
         window.alert(data.message);

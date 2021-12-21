@@ -53,7 +53,7 @@ const Items = () => {
                 console.log(val);
                 return (
                   <div class="card card_item card_shadow col-lg-3 my-4">
-                    <img src={img} class="card-img-top" alt="..." />
+                    <img src={val.images} class="card-img-top" alt="..." />
                     <div class="card-body card_background">
                       <h5 class="card-title">{val.prodName}</h5>
                       <p class="card-text">{val.description}</p>
