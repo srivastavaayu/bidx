@@ -10,39 +10,45 @@ const Navbar = () => {
   const [productPhoto, setProductPhoto] = useState("");
 
   //connecting backend
-  async function addProduct() {
+  function addProduct() {
     // addProductFormdata.append("prodName", productName);
     // addProductFormdata.append("prodName", productName);
     // addProductFormdata.append("prodName", productName);
     // addProductFormdata.append("prodName", productName);
     // addProductFormdata.append("prodName", productName);
     // addProductFormdata.append("prodName", productName);
+
     try {
-      const res = await fetch("/addProduct", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+      let reader = new FileReader();
+      let file = document.getElementsByClassName("productImageFileUpload")[0]
+        .files[0];
+      reader.readAsDataURL(file);
+      reader.onload = async function () {
+        const res = await fetch("/temp", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            prodName: productName,
+            description: productDescription,
+            basePrice: productBaseBidPrice,
+            duration: productDuration,
+            category: productCategory,
+            imageBase: reader.result,
+          }),
+        });
 
-        body: JSON.stringify({
-          prodName: productName,
-          description: productDescription,
-          basePrice: productBaseBidPrice,
-          duration: productDuration,
-          category: productCategory,
-          "product-images": document.getElementById(productPhoto).files[0],
-        }),
-      });
+        const data = await res.json();
 
-      const data = await res.json();
-
-      if (res.status === 202) {
-        console.log(data.message);
-        window.alert(data.message);
-      } else {
-        console.log(data.message);
-        window.alert(data.message);
-      }
+        if (res.status === 202) {
+          console.log(data.message);
+          window.alert(data.message);
+        } else {
+          console.log(data.message);
+          window.alert(data.message);
+        }
+      };
     } catch (err) {
       console.log(err);
     }
@@ -71,11 +77,6 @@ const Navbar = () => {
               ></button>
             </div>
             <div class="modal-body">
-              <form
-                id="addProductForm"
-                method="POST"
-                action="/addProduct"
-              ></form>
               <div class="form-floating mb-3">
                 <input
                   type="text"
@@ -148,9 +149,8 @@ const Navbar = () => {
                   <option selected disabled>
                     Select Product Category
                   </option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                  <option value="electronics">Electronics</option>
+                  <option value="vehicles">Vehicles</option>
                 </select>
                 <label for="productCategory">Product Category</label>
               </div>
@@ -159,7 +159,7 @@ const Navbar = () => {
                   Upload Product Photo
                 </label>
                 <input
-                  class="form-control"
+                  class="form-control productImageFileUpload"
                   type="file"
                   id="productPhoto"
                   name="product-images"
@@ -214,7 +214,7 @@ const Navbar = () => {
                 data-bs-toggle="modal"
                 data-bs-target="#addProductModal"
               >
-                Launch demo modal
+                Add Product
               </button>
               <NavLink
                 exact
@@ -228,7 +228,7 @@ const Navbar = () => {
                 exact
                 activeClassName="menu_active"
                 className="nav-link mx-1"
-                to="/userLogin"
+                to="/authentication"
               >
                 Login
               </NavLink>

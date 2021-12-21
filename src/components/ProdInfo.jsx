@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../styles/ProdInfo.scss";
 import img1 from "../static/image2.jpg";
+import { useLocation, useHistory } from "react-router-dom";
 
 // const sdata = {id:"123b",
 //                creatorId:"123x",
@@ -20,6 +21,9 @@ import img1 from "../static/image2.jpg";
 const ProdInfo = () => {
   const [sdata, setSdata] = useState();
   const [bidPrice, setBidPrice] = useState(0);
+  const location = useLocation();
+  const history = useHistory();
+  const productId = location.pathname.split("/").at(-1);
   //Backend Connection
   useEffect(() => {
     async function fetchData() {
@@ -31,7 +35,7 @@ const ProdInfo = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            productId: "61b8c98108070571f844b22c",
+            productId: productId,
           }),
           credentials: "include",
         });
@@ -53,6 +57,34 @@ const ProdInfo = () => {
   }, []);
   console.log(sdata);
 
+  //backend connect
+  const placeBid = async () => {
+    //backend Connect
+    try {
+      const res = await fetch("/addBid", {
+        method: "PUT",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          productId: productId,
+          bid: bidPrice,
+        }),
+        credentials: "include",
+      });
+
+      const data = await res.json();
+      console.log(data);
+      if (!res.status === 202) {
+        const error = new Error(res.error);
+        throw error;
+      }
+    } catch (err) {
+      console.log(err);
+      history.push("/authentication");
+    }
+  };
   return (
     <>
       {sdata ? (
@@ -72,9 +104,9 @@ const ProdInfo = () => {
               </div>
               <div className="card-body">
                 <p style={{ fontSize: "20px" }} className="text-center">
-                  <b className="me-lg-5">Base Price : ${sdata.basePrice}</b>
+                  <b className="me-lg-5">Base Price : ₹ {sdata.basePrice}</b>
                   <b>
-                    <span className="text-danger">Current Max Bid : </span>$
+                    <span className="text-danger">Current Max Bid : </span>₹{" "}
                     {sdata.biddingPrice}
                   </b>
                 </p>
@@ -113,7 +145,14 @@ const ProdInfo = () => {
                     <b>+</b>
                   </button>
                 </span>{" "}
-                <button className="btn btn-danger ms-5">Bid now</button>
+                <button
+                  className="btn btn-danger ms-5"
+                  onClick={() => {
+                    placeBid();
+                  }}
+                >
+                  Bid now
+                </button>
               </div>
             </div>
             <div className="col-lg-5">

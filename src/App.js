@@ -11,15 +11,19 @@ import ProdInfo from "./components/ProdInfo";
 import Dashboard from "./components/Dashboard";
 import Forgotpass from "./components/Forgotpass";
 import Navbar from "./components/Navbar";
-import {Route,Switch} from 'react-router-dom';
+import { Route, Switch } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <Navbar/>
+      <Navbar />
       <Switch>
-          <Route exact path="/home" component={Forgotpass} />
-          <Route exact path="/UserLogin" component={Authentication} />
+        <Route exact path="/home" component={Homepage} />
+        <Route exact path="/home/vehicles" component={Items} />
+        <Route exact path="/home/electronics" component={Items} />
+        <Route exact path="/authentication" component={Authentication} />
+        <Route exact path="/user" component={Dashboard} />
+        <Route path="/product" component={ProdInfo} />
       </Switch>
       {/* <Header /> */}
       {/* <Authentication /> */}
