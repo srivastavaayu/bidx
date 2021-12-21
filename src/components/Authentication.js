@@ -62,6 +62,7 @@ class Authentication extends React.Component {
       if (res.status === 202) {
         console.log(data.message);
         window.alert(data.message);
+        this.props.history.push("/authentication");
       } else {
         console.log(data.message);
         window.alert(data.message);
@@ -91,7 +92,7 @@ class Authentication extends React.Component {
         console.log(data.message.userName);
         window.alert(data.message.userName);
         this.props.history.push("/home");
-        
+
         window.location.reload(false);
       } else {
         console.log(data.message);
