@@ -58,7 +58,7 @@ const Items = () => {
                     />
                     <div className="card-body card_background">
                       <h5 className="card-title">{val.prodName}</h5>
-                      <p className="card-text">{val.description}</p>
+                      <p className="card-text">Time left: {val.hoursleft}hrs</p>
                       <div className="d-flex">
                         <Link to={`/product/${val._id}`}>
                           <button href="#" class="btn btn-outline-danger">
