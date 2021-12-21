@@ -96,7 +96,7 @@ const ProdInfo = () => {
             <div className="col-lg-6">
               <div className="card card_item">
                 <img
-                  src={img1}
+                  src={sdata.images}
                   className="card-img-top mx-auto"
                   alt="Card1"
                   style={{ width: "100%" }}

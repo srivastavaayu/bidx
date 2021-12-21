@@ -6,7 +6,7 @@ const Navbar = () => {
   const [productDescription, setProductDescription] = useState("");
   const [productBaseBidPrice, setProductBaseBidPrice] = useState("");
   const [productDuration, setProductDuration] = useState("");
-  const [productCategory, setProductCategory] = useState("1");
+  const [productCategory, setProductCategory] = useState("electronics");
   const [productPhoto, setProductPhoto] = useState("");
 
   //connecting backend
@@ -24,7 +24,7 @@ const Navbar = () => {
         .files[0];
       reader.readAsDataURL(file);
       reader.onload = async function () {
-        const res = await fetch("/temp", {
+        const res = await fetch("/addProducts", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
