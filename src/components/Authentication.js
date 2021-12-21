@@ -17,9 +17,9 @@ class Authentication extends React.Component {
     super(props);
     this.state = {
       authenticationMode: "login",
-      username:"",
+      username: "",
       email: "",
-      phone:"",
+      phone: "",
       password: "",
       firstName: "",
       lastName: "",
@@ -38,66 +38,66 @@ class Authentication extends React.Component {
     document.getElementById(event.target.id).classList.remove("is-invalid");
   }
 
- //register function (backend)
- async registerUser() {
-  try {
-    const res = await fetch("/registerUser", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        'userName':this.state.username,
-        'firstName':this.state.firstName,
-        'lastName':this.state.lastName,
-        'email':this.state.email,
-        'password':this.state.password,
-        'phone':this.state.phone
-      }),
-    });
+  //register function (backend)
+  async registerUser() {
+    try {
+      const res = await fetch("/registerUser", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userName: this.state.username,
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          email: this.state.email,
+          password: this.state.password,
+          phone: this.state.phone,
+        }),
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (res.status === 202) {
-      console.log(data.message);
-      window.alert(data.message);
-    } else {
-      console.log(data.message);
-      window.alert(data.message);
+      if (res.status === 202) {
+        console.log(data.message);
+        window.alert(data.message);
+      } else {
+        console.log(data.message);
+        window.alert(data.message);
+      }
+    } catch (err) {
+      console.log(err);
     }
-  } catch (err) {
-    console.log(err);
   }
-};
 
+  async loginUser() {
+    try {
+      const res = await fetch("/loginUser", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userName: this.state.username,
+          password: this.state.password,
+        }),
+      });
 
-async loginUser() {
-  try {
-    const res = await fetch("/loginUser", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        'userName':this.state.username,
-        'password':this.state.password,
-      }),
-    });
-
-    const data = await res.json();
-    console.log(data);
-    //TODO: Redirect to Home Page
-    if (res.status === 202) {
-      console.log(data.message.userName);
-      window.alert(data.message.userName);
-    } else {
-      console.log(data.message);
-      window.alert(data.message);
+      const data = await res.json();
+      console.log(data);
+      //TODO: Redirect to Home Page
+      if (res.status === 202) {
+        console.log(data.message.userName);
+        window.alert(data.message.userName);
+        //history.push("/home");
+      } else {
+        console.log(data.message);
+        window.alert(data.message);
+      }
+    } catch (err) {
+      console.log(err);
     }
-  } catch (err) {
-    console.log(err);
   }
-};
 
   validateandAuthenticate(event) {
     event.preventDefault();
@@ -169,14 +169,13 @@ async loginUser() {
     }
   }
 
-
   //Back End Connect
 
   render() {
     if (this.state.authenticationMode === "login") {
       return (
         <>
-          <div className="container-fluid authenticationDiv authenticationLoginDiv">
+          <div className="container-fluid authenticationDiv authenticationLoginDiv mt-5 pt-4">
             <h2>Login to BidX</h2>
             <div className="form-floating mb-3 mt-4">
               <input
@@ -236,7 +235,7 @@ async loginUser() {
     } else {
       return (
         <>
-          <div className="container-fluid authenticationDiv authenticationRegisterDiv">
+          <div className="container-fluid authenticationDiv authenticationRegisterDiv mt-5 pt-4">
             <h2>Register on BidX</h2>
             <div className="form-floating mb-3 mt-4">
               <input
