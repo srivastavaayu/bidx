@@ -9,6 +9,7 @@ import Items from "./components/Items";
 import Footer from "./components/Footer";
 import ProdInfo from "./components/ProdInfo";
 import Dashboard from "./components/Dashboard";
+import Forgotpass from "./components/Forgotpass";
 import Navbar from "./components/Navbar";
 import {Route,Switch} from 'react-router-dom';
 
@@ -17,7 +18,7 @@ function App() {
     <div className="App">
       <Navbar/>
       <Switch>
-          <Route exact path="/home" component={ProdInfo} />
+          <Route exact path="/home" component={Forgotpass} />
           <Route exact path="/UserLogin" component={Authentication} />
       </Switch>
       {/* <Header /> */}
