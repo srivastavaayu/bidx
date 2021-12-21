@@ -7,3 +7,15 @@
   display: flex;
   justify-content: space-between;
 }
+
+.forgotPasswordContainer {
+  display: grid;
+  grid-template-columns: 5fr 2fr;
+}
+
+.forgotPassword {
+  padding: 0;
+  margin: auto 0 auto 5px;
+  height: 100%;
+  width: 100%;
+}
