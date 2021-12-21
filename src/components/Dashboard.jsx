@@ -188,7 +188,7 @@ const Dashboard = ()=>{
                                             return(<>
                                                 <tr>
                                                     <td>{vall.bidPrice?vall.bidPrice:""}</td>
-                                                    <td>23-12-1999</td>
+                                                    <td>{vall.date?vall.date : ""}</td>
                                                 </tr> 
                                             </>)
                                         })}
@@ -228,9 +228,9 @@ const Dashboard = ()=>{
                                         {val.bids.map((vall,indexx)=>{
                                             return(<>
                                                 <tr>
-                                                    <td>{vall.username?vall.username:""}</td>
+                                                    <td>{vall.userName?vall.userName:""}</td>
                                                     <td>{vall.bidPrice?vall.bidPrice : ""}</td>
-                                                    <td>23-12-1999</td>
+                                                    <td>{vall.date?vall.date : ""}</td>
                                                 </tr> 
                                             </>)
                                         })}
