@@ -23,8 +23,7 @@ const Items = () => {
         });
 
         const data = await res.json();
-        setSdata(data);
-
+        setSdata(data.filter((node) => node.category === selectedCategory));
         if (!res.status === 202) {
           const error = new Error(res.error);
           throw error;
