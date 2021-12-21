@@ -183,10 +183,6 @@ const ProdInfo = () => {
                   <span className="text-danger">Product Information : </span>
                   {sdata.description}
                 </h5>
-                <h5>
-                  <span className="text-danger">Details :</span>
-                  <br />
-                </h5>
               </div>
             </div>
           </div>

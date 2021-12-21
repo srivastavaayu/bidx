@@ -9,7 +9,34 @@ const Navbar = () => {
   const [productCategory, setProductCategory] = useState("electronics");
   const [productPhoto, setProductPhoto] = useState("");
   const [islogin, setIsLogin] = useState(false);
+
+  // const logout=()=>{
+  //   setIsLogin(false);
+  // }
+
   //connecting backend
+  async function userLogin(){
+    try {
+      const res = await fetch("/viewUserProfile", {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
+
+      const data = await res.json();
+
+      if (res.status == 202) {
+        setIsLogin(true);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  userLogin();
+
   function addProduct() {
     // addProductFormdata.append("prodName", productName);
     // addProductFormdata.append("prodName", productName);
@@ -187,7 +214,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      {islogin ? (
+      {!islogin ? (
         <nav className="navbar fixed-top navbar-expand-lg navbar-dark shadow">
           <div className="container-fluid">
             <NavLink className="navbar-brand ms-3" to="/home">
@@ -275,8 +302,17 @@ const Navbar = () => {
                   className="nav-link mx-1"
                   to="/user"
                 >
-                  Hii Abhishek !
+                  Your Dashboard
                 </NavLink>
+                {/* <NavLink
+                  exact
+                  activeClassName="menu_active"
+                  className="nav-link mx-1"
+                  to="/authentication"
+                  onClick={logout}
+                >
+                  Logout
+                </NavLink> */}
               </div>
             </div>
           </div>
