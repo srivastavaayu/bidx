@@ -22,6 +22,7 @@ function App() {
         <Route exact path="/home/vehicles" component={Items} />
         <Route exact path="/home/electronics" component={Items} />
         <Route exact path="/authentication" component={Authentication} />
+        <Route exact path="/forgotPassword" component={Forgotpass} />
         <Route exact path="/user" component={Dashboard} />
         <Route path="/product" component={ProdInfo} />
       </Switch>

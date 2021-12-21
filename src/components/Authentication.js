@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 // let authenticationLoginSchema = yup.object().shape({
 //   email: yup.string().trim().email().required(),
@@ -197,24 +198,32 @@ class Authentication extends React.Component {
                 Username
               </label>
             </div>
-            <div className="form-floating mb-3">
-              <input
-                id="authenticationLoginDiv__passwordInput"
-                className="form-control"
-                name="password"
-                value={this.state.password}
-                type="password"
-                placeholder="Password"
-                onChange={(event) => this.handleInput(event)}
-              />
-              <div
-                id="authenticationLoginDiv__passwordInput__invalidFeedback"
-                className="invalid-feedback"
-              ></div>
-              <label htmlFor="authenticationLoginDiv__passwordInput">
-                Password
-              </label>
+            <div className="forgotPasswordContainer mb-3">
+              <div className="form-floating">
+                <input
+                  id="authenticationLoginDiv__passwordInput"
+                  className="form-control"
+                  name="password"
+                  value={this.state.password}
+                  type="password"
+                  placeholder="Password"
+                  onChange={(event) => this.handleInput(event)}
+                />
+                <div
+                  id="authenticationLoginDiv__passwordInput__invalidFeedback"
+                  className="invalid-feedback"
+                ></div>
+                <label htmlFor="authenticationLoginDiv__passwordInput">
+                  Password
+                </label>
+              </div>
+              <Link to="/forgotPassword">
+                <button className="btn btn-warning forgotPassword">
+                  Forgot Password?
+                </button>
+              </Link>
             </div>
+
             <div className="authenticationButtonDiv">
               <button
                 type="button"
