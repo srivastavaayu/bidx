@@ -41,7 +41,6 @@ const ProdInfo = () => {
         });
 
         const data = await res.json();
-        //console.log(data);
         setSdata(data);
         setBidPrice(data.biddingPrice);
         if (!res.status === 202) {
@@ -55,7 +54,6 @@ const ProdInfo = () => {
 
     fetchData();
   }, []);
-  console.log(sdata);
 
   //backend connect
   const placeBid = async () => {
@@ -75,7 +73,6 @@ const ProdInfo = () => {
       });
 
       const data = await res.json();
-      console.log(data);
       if (!res.status === 202) {
         const error = new Error(res.error);
         throw error;

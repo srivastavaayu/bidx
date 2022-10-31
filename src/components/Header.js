@@ -1,5 +1,4 @@
 import React from "react";
-//import BidXLogo from "../assets/BidXLogo.png";
 
 class Header extends React.Component {
   constructor(props) {

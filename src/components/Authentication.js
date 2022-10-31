@@ -1,18 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-// let authenticationLoginSchema = yup.object().shape({
-//   email: yup.string().trim().email().required(),
-//   password: yup.string().trim().min(8).required(),
-// });
-
-// let authenticationRegisterSchema = yup.object().shape({
-//   name: yup.string().trim().required(),
-//   email: yup.string().trim().email(),
-//   password: yup.string().trim().min(8).required(),
-//   confirmPassword: yup.string().trim().required(),
-// });
-
 class Authentication extends React.Component {
   constructor(props) {
     super(props);
@@ -39,7 +27,6 @@ class Authentication extends React.Component {
     document.getElementById(event.target.id).classList.remove("is-invalid");
   }
 
-  //register function (backend)
   async registerUser() {
     try {
       const res = await fetch("/registerUser", {
@@ -60,11 +47,9 @@ class Authentication extends React.Component {
       const data = await res.json();
 
       if (res.status === 202) {
-        console.log(data.message);
         window.alert(data.message);
         this.props.history.push("/authentication");
       } else {
-        console.log(data.message);
         window.alert(data.message);
       }
     } catch (err) {
@@ -86,16 +71,12 @@ class Authentication extends React.Component {
       });
 
       const data = await res.json();
-      console.log(data);
-      //TODO: Redirect to Home Page
       if (res.status === 202) {
-        console.log(data.message.userName);
         window.alert(data.message.userName);
         this.props.history.push("/home");
 
         window.location.reload(false);
       } else {
-        console.log(data.message);
         window.alert(data.message);
       }
     } catch (err) {
@@ -172,8 +153,6 @@ class Authentication extends React.Component {
       }));
     }
   }
-
-  //Back End Connect
 
   render() {
     if (this.state.authenticationMode === "login") {
