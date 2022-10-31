@@ -4,12 +4,10 @@ import img from "../static/image2.jpg";
 import img2 from "../static/image3.jpg";
 import { Link, useLocation } from "react-router-dom";
 
-// Component to show items
 const Items = () => {
   const [sdata, setSdata] = useState();
   const location = useLocation();
   const selectedCategory = location.pathname.split("/").at(-1);
-  //Backend Connection
   useEffect(() => {
     async function fetchData() {
       try {
@@ -34,7 +32,6 @@ const Items = () => {
     }
     fetchData();
   }, []);
-  console.log(sdata);
   return (
     <>
       <section className="container">
@@ -49,7 +46,6 @@ const Items = () => {
         <div className="row">
           {sdata
             ? sdata.map((val, index) => {
-                console.log(val);
                 return (
                   <div className="card card_item card_shadow col-lg-3 my-4 productCardContainer productCard">
                     <img

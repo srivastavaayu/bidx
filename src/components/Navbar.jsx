@@ -10,12 +10,7 @@ const Navbar = () => {
   const [productPhoto, setProductPhoto] = useState("");
   const [islogin, setIsLogin] = useState(false);
 
-  // const logout=()=>{
-  //   setIsLogin(false);
-  // }
-
-  //connecting backend
-  async function userLogin(){
+  async function userLogin() {
     try {
       const res = await fetch("/viewUserProfile", {
         method: "GET",
@@ -38,13 +33,6 @@ const Navbar = () => {
   userLogin();
 
   function addProduct() {
-    // addProductFormdata.append("prodName", productName);
-    // addProductFormdata.append("prodName", productName);
-    // addProductFormdata.append("prodName", productName);
-    // addProductFormdata.append("prodName", productName);
-    // addProductFormdata.append("prodName", productName);
-    // addProductFormdata.append("prodName", productName);
-
     try {
       let reader = new FileReader();
       let file = document.getElementsByClassName("productImageFileUpload")[0]
@@ -69,10 +57,8 @@ const Navbar = () => {
         const data = await res.json();
 
         if (res.status === 202) {
-          console.log(data.message);
           window.alert(data.message);
         } else {
-          console.log(data.message);
           window.alert(data.message);
         }
       };
